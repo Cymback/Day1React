@@ -18,10 +18,28 @@ class BookStore {
         this._books.push(book);
         this._nextID++;
     }
+    deleteBook(id) {
+        let targetedIndex = this.findIndexById(id)
+        if (targetedIndex) {
+            this._books.splice(targetedIndex, 1);
+        }
+    }
+
+    findIndexById(id) {
+        return this._books.findIndex((book) => book.id === id);
+    }
+
+    getBook(id) {
+        return this._books.find((book) => book.id === id)
+    }
+
+    editBook(book) {
+        let targetedIndex = this.findIndexById(book.id)
+        if (targetedIndex) {
+            this._books[targetedIndex] = book;
+        }
+    }
 }
-
-let bookStore = new BookStore();
-
 
 export default new BookStore();
 
